@@ -1,0 +1,15 @@
+[submodule "roles/mde"]
+	path = roles/mde
+	url = https://github.com/francisg-onfido/ansible-role-mde
+[submodule "roles/chrome"]
+	path = roles/chrome
+	url = https://github.com/francisg-onfido/ansible-role-googlechrome
+[submodule "roles/onepassword"]
+	path = roles/onepassword
+	url = https://github.com/francisg-onfido/ansible-role-onepassword
+[submodule "roles/slack"]
+	path = roles/slack
+	url = https://github.com/francisg-onfido/ansible-role-slack
+[submodule "roles/zoom"]
+	path = roles/zoom
+	url = https://github.com/francisg-onfido/ansible-role-zoom

@@ -1,0 +1,7 @@
+# tasks file
+---
+- include: install.yml
+  tags:
+   - configuration
+   - slack
+   - slack-install

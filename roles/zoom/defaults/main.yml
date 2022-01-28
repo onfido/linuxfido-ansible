@@ -1,0 +1,7 @@
+---
+# defaults file for zoom
+app_name: zoom
+app_name_gpg_key: https://zoom.us/linux/download/pubkey
+app_name_rpm: https://zoom.us/client/latest/zoom_x86_64.rpm
+app_name_deb: https://zoom.us/client/latest/zoom_amd64.deb
+app_name_desired_state: present

@@ -1,0 +1,12 @@
+---
+# tasks file for app_name | Debian/Ubuntu Family
+
+- name: Debian/Ubuntu Family | Add gpg signing key for {{ app_name }}
+  apt_key:
+    url: "{{ app_name_gpg_key }}"
+    state: present
+    
+- name: Debian/Ubuntu Family | Installing {{ app_name }}
+  apt:
+    deb: "{{ app_name_deb }}"
+    state: "{{ app_name_desired_state }}"

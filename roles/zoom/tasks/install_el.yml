@@ -1,0 +1,8 @@
+---
+# tasks file for app_name | EL Family
+
+- name: EL Family | Installing {{ app_name }}
+  yum:
+    name: "{{ app_name_rpm }}"
+    state: "{{ app_name_desired_state }}"
+    update_cache: yes

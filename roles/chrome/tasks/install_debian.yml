@@ -1,0 +1,41 @@
+---
+# tasks file for googlechrome | Debian/Ubuntu Family
+
+- name: Debian/Ubuntu Family | Add gpg signing key for {{ googlechrome_app_name }}
+  apt_key:
+    url: "{{ googlechrome_gpg_key }}"
+    state: present
+    
+- name: Debian/Ubuntu Family | Add gpg signing key for google cloud packages
+  apt_key:
+    url: "{{ google_cloud_packages_debian_gpg_key }}"
+    state: present
+
+- name: Debian/Ubuntu Family | Adding repository {{ googlechrome_repo_debian }}
+  apt_repository:
+    repo: "{{ googlechrome_repo_debian }}"
+    state: "{{ googlechrome_repo_desired_state }}"
+    filename: "{{ googlechrome_repo_debian_filename }}"
+    update_cache: yes
+
+- name: Debian/Ubuntu Family | Adding repository {{ google_cloud_packages_repo_debian }}
+  apt_repository:
+    repo: "{{ google_cloud_packages_repo_debian }}"
+    state: "{{ google_cloud_packages_repo_desired_state }}"
+    filename: "{{ google_cloud_packages_repo_debian_filename }}"
+    update_cache: yes
+
+- name: Debian/Ubuntu Family | Installing {{ googlechrome_app_name }}
+  apt:
+    name: "{{ googlechrome_app_name }}"
+    state: "{{ googlechrome_desired_state }}"
+    force_apt_get: yes
+    update_cache: yes
+    
+    
+- name: Debian/Ubuntu Family | Installing {{ google_endpoint_verification_app_name }}
+  apt:
+    name: "{{ google_endpoint_verification_app_name }}"
+    state: "{{ google_endpoint_verification_app_desired_state }}"
+    force_apt_get: yes
+    update_cache: yes
