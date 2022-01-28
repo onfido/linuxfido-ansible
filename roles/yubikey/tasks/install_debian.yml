@@ -12,9 +12,9 @@
     name: yubikey-manager
     state: present
     
-- name: Debian/Ubuntu Family | Installing yubikey piv tool
+- name: Debian/Ubuntu Family | Installing yubico piv tool
   apt:
-    name: yubikey-piv-tool
+    name: yubico-piv-tool
     state: present
 
 - name: Debian/Ubuntu Family | Installing yubikey personalization gui tool
