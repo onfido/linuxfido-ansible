@@ -33,9 +33,4 @@
     - slack
     - zoom
     - chrome_enrollment
-#    - include: tasks/packages/chrome.yml
-#    - include: tasks/packages/chrome_enrolment.yml
-#    - include: tasks/packages/mde.yml
-#    - include: tasks/packages/slack.yml
-#    - include: tasks/packages/onepassword.yml
-#    - include: tasks/packages/zoom.yml
+    - yubikey 

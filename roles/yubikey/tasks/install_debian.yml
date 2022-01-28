@@ -1,0 +1,23 @@
+---
+# tasks file for yubikey 
+
+- name: Debian/Ubuntu Family | Adding yubico repository
+  apt_repository:
+    repo: ppa:yubico/stable
+    state: present
+    update_cache: yes
+
+- name: Debian/Ubuntu Family | Installing yubikey manager CLI
+  apt:
+    name: yubikey-manager
+    state: present
+    
+- name: Debian/Ubuntu Family | Installing yubikey piv tool
+  apt:
+    name: yubikey-piv-tool
+    state: present
+
+- name: Debian/Ubuntu Family | Installing yubikey personalization gui tool
+  apt:
+    name: yubikey-personalization-gui
+    state: present
