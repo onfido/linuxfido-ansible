@@ -1,6 +1,14 @@
 ---
 # tasks file for googlechromeenrollment
 
+- name: create chrome policy directory if not existent 
+  file:
+    path: /etc/opt/chrome/policies/enrollment
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
 - name: Copy enrollment token into correct location
   ansible.builtin.copy:
     content: "{{ chrome_enrollment_token }}"
