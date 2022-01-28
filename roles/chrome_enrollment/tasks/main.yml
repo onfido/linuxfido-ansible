@@ -1,0 +1,15 @@
+---
+# tasks file for googlechromeenrollment
+
+- name: Copy enrollment token into correct location
+  ansible.builtin.copy:
+    content: "{{ chrome_enrollment_token }}"
+    dest: /etc/opt/chrome/policies/enrollment/CloudManagementEnrollmentToken
+    mode: 0644
+
+- name: Copy enrollment policy into correct location
+  ansible.builtin.copy: 
+    content: "Mandatory"
+    dest: /etc/opt/chrome/policies/enrollment/CloudManagementEnrollmentOptions
+    mode: 0644
+

@@ -32,6 +32,7 @@
     - onepassword
     - slack
     - zoom
+    - chrome_enrollment
 #    - include: tasks/packages/chrome.yml
 #    - include: tasks/packages/chrome_enrolment.yml
 #    - include: tasks/packages/mde.yml
