@@ -49,7 +49,6 @@
     name:
       - apt-transport-https
       - libplist-utils
-      - python-apt
       - python3-apt
       - gnupg
     state: present
