@@ -1,0 +1,9 @@
+---
+# update hostname to match the serial number of the device
+
+- name: "Update Hostname"
+  become: yes
+  become_method: sudo
+  hostname:
+    name: "{{ ansible_facts['product_serial'] }}"
+  when: ansible_facts['product_serial'] is defined
