@@ -27,7 +27,6 @@
     - include: tasks/users.yml
     - include: tasks/cron.yml
   roles:
-    - hostname_adjust
     - mde
     - chrome
     - onepassword
