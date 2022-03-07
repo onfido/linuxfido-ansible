@@ -2,7 +2,9 @@
 
 - name: Manage Defender package from Microsoft repository.
   package:
-    name: mdatp
+    name:
+      - mdatp
+      - mde-netfilter
     state: "{{ uninstall | ternary ('absent', 'present') }}"
   tags:
     - package
