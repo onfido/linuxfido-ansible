@@ -13,7 +13,7 @@
 - name: Add Microsoft apt repository for Defender.
   apt_repository:
     repo: "deb [arch=arm64,armhf,amd64] https://packages.microsoft.com/{{ ansible_distribution | lower }}/{{ ansible_distribution_version }}/prod main" # noqa 204
-    filename: "microsoft-{{ channel }}.list"
+    filename: "microsoft-atp-{{ channel }}"
     update_cache: yes
     state: "{{ uninstall | ternary ('absent', 'present') }}"
   when: ansible_os_family == "Debian"
