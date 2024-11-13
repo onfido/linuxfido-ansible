@@ -10,12 +10,20 @@
     - debian
     - repo
 
-- name: Add Microsoft apt repository for Defender.
-  apt_repository:
-    repo: "deb [arch=arm64,armhf,amd64] https://packages.microsoft.com/{{ ansible_distribution | lower }}/{{ ansible_distribution_version }}/prod main" # noqa 204
-    filename: "microsoft-atp-{{ channel }}"
+- name: Download apt repository file for Defender
+  ansible.builtin.get_url:
+    url: "https://packages.microsoft.com/config/{{ ansible_distribution | lower }}/{{ ansible_distribution_version }}/{{ channel }}.list"
+    dest: /etc/apt/sources.list.d/microsoft-atp-prod.list
+    force: true
+  when: ansible_os_family == "Debian"
+  tags:
+    - debian
+    - repo
+
+- name: update apt cache with Defender repo
+  ansible.builtin.apt:
     update_cache: yes
-    state: "{{ uninstall | ternary ('absent', 'present') }}"
+    cache_valid_time: 1
   when: ansible_os_family == "Debian"
   tags:
     - debian
