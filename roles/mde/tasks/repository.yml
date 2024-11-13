@@ -31,7 +31,6 @@
 - name: Add Microsoft rpm key.
   rpm_key:
     key: https://packages.microsoft.com/keys/microsoft.asc
-    fingerprint: BC528686B50D79E339D3721CEB3E94ADBE1229CF
     state: "{{ uninstall | ternary ('absent', 'present') }}"
   when: ansible_os_family == "RedHat"
   tags:
