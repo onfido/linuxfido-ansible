@@ -36,6 +36,33 @@
     - onboarding
     - molecule-notest
 
+- name: Extract managed package.
+  unarchive:
+    src: "{{ onboarding_source }}"
+    dest: /etc/opt/microsoft/mdatp
+    creates: /etc/opt/microsoft/mdatp/mdatp_managed.json
+    mode: 0600
+    owner: root
+    group: root
+    remote_src: "{{ '://' in onboarding_source }}"
+  register: unarchive_out
+  ignore_errors: yes
+  when: not uninstall
+  tags:
+    - onboarding
+    - molecule-notest
+
+- name: "DEBUG: output from managed unzip attempt."
+  debug:
+    var: unarchive_out
+    verbosity: 3
+  when:
+    - unarchive_out is defined
+  tags:
+    - onboarding
+    - molecule-notest
+
+
 - name: Custom error handling for configuration unzip.
   fail:
     msg: "mdatp configuration json did not unzip successfully."
