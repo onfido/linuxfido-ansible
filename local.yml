@@ -28,9 +28,9 @@
     - include: tasks/cron.yml
   roles:
     - mde
-    - chrome
+#    - chrome
 #    - onepassword
 #    - slack
 #    - zoom
-    - chrome_enrollment
+#    - chrome_enrollment
 #    - yubikey 
