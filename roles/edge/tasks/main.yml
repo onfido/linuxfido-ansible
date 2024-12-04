@@ -54,10 +54,10 @@
 - name: Setup packages.microsoft.com repository.
   include_tasks: repository.yml
 
-- name: Install intune portal app
+- name: Install Microsoft Edge Stable
   apt:
     name:
-      - intune-portal
+      - microsoft-edge-stable
     state: present
   when:
     - not uninstall
