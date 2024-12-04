@@ -2,7 +2,7 @@
 
 - name: Create Defender configuration directories.
   file:
-    path: /etc/opt/microsoft/mdatp/
+    path: /etc/opt/microsoft/mdatp/managed/
     state: "{{ uninstall | ternary ('absent', 'directory') }}"
     mode: 0755
     owner: root
@@ -39,7 +39,7 @@
 - name: Extract managed package.
   unarchive:
     src: "{{ onboarding_source }}"
-    dest: /etc/opt/microsoft/mdatp
+    dest: /etc/opt/microsoft/mdatp/managed
     creates: /etc/opt/microsoft/mdatp/managed/mdatp_managed.json
     mode: 0600
     owner: root
