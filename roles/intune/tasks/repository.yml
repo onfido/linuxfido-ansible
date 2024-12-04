@@ -1,0 +1,62 @@
+---
+
+- name: Remove Microsoft Beta slow repository if present
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/insiders-fast.list
+    state: absent
+
+- name: Remove Microsoft Beta fast repository if present
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/insiders-slow.list
+    state: absent
+
+- name: Add Microsoft apt key.
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: "{{ uninstall | ternary ('absent', 'present') }}"
+  when: ansible_os_family == "Debian"
+  tags:
+    - debian
+    - repo
+
+- name: Download apt repository file for Defender
+  ansible.builtin.get_url:
+    url: "https://packages.microsoft.com/config/{{ ansible_distribution | lower }}/{{ ansible_distribution_version }}/prod.list"
+    dest: /etc/apt/sources.list.d/microsoft-atp-prod.list
+    force: true
+  when: ansible_os_family == "Debian"
+  tags:
+    - debian
+    - repo
+
+- name: update apt cache with Defender repo
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 1
+  when: ansible_os_family == "Debian"
+  tags:
+    - debian
+    - repo
+
+- name: Add Microsoft rpm key.
+  rpm_key:
+    key: https://packages.microsoft.com/keys/microsoft.asc
+    state: "{{ uninstall | ternary ('absent', 'present') }}"
+  when: ansible_os_family == "RedHat"
+  tags:
+    - redhat
+    - repo
+
+- name: Add Microsoft yum repository for Defender.
+  yum_repository:
+    name: "packages-microsoft-com-{{ channel }}"
+    description: Microsoft Defender Endpoint for Linux
+    file: "microsoft-{{ channel }}"
+    baseurl: "https://packages.microsoft.com/{{ (ansible_distribution == 'RedHat') | ternary('rhel', ansible_distribution) | lower }}/{{ ansible_distribution_major_version }}/{{ channel }}/" # noqa 204
+    gpgcheck: yes
+    enabled: yes
+    state: "{{ uninstall | ternary ('absent', 'present') }}"
+  when: ansible_os_family == "RedHat"
+  tags:
+    - redhat
+    - repo
