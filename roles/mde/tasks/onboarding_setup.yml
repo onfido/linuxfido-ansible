@@ -40,7 +40,7 @@
   unarchive:
     src: "{{ onboarding_source }}"
     dest: /etc/opt/microsoft/mdatp
-    creates: /etc/opt/microsoft/mdatp/mdatp_managed.json
+    creates: /etc/opt/microsoft/mdatp/managed/mdatp_managed.json
     mode: 0600
     owner: root
     group: root
