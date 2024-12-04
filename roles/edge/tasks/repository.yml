@@ -1,0 +1,52 @@
+---
+
+- name: Add Microsoft apt key.
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: "{{ uninstall | ternary ('absent', 'present') }}"
+  when: ansible_os_family == "Debian"
+  tags:
+    - debian
+    - repo
+
+- name: Add repository for Microsoft Edge
+  ansible.builtin.apt_repository:
+    repo: deb https://packages.microsoft.com/repos/edge stable main
+    state: present
+    filename: microsoft-edge-stable
+  when: ansible_os_family == "Debian"
+  tags:
+    - debian
+    - repo
+
+- name: update apt cache with Edge repo
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 1
+  when: ansible_os_family == "Debian"
+  tags:
+    - debian
+    - repo
+
+- name: Add Microsoft rpm key.
+  rpm_key:
+    key: https://packages.microsoft.com/keys/microsoft.asc
+    state: "{{ uninstall | ternary ('absent', 'present') }}"
+  when: ansible_os_family == "RedHat"
+  tags:
+    - redhat
+    - repo
+
+- name: Add Microsoft yum repository for Edge.
+  yum_repository:
+    name: "packages-microsoft-com-edge"
+    description: Microsoft Edge for Linux
+    file: "microsoft-edge-stable"
+    baseurl: "https://packages.microsoft.com/yumrepos/edge"
+    gpgcheck: yes
+    enabled: yes
+    state: "{{ uninstall | ternary ('absent', 'present') }}"
+  when: ansible_os_family == "RedHat"
+  tags:
+    - redhat
+    - repo
