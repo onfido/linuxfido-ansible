@@ -3,4 +3,4 @@
     user: ansible
     name: "ansible provision hourly check"
     minute: "42"
-    job: "/usr/bin/ansible-pull -U https://github.com/onfido/linuxfido-ansible.git > /dev/null"
+    job: "/usr/bin/ansible-pull -i localhost -f -U https://github.com/onfido/linuxfido-ansible.git > /dev/null"
