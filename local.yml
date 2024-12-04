@@ -29,6 +29,7 @@
   roles:
     - mde
     - intune
+    - edge
 #    - chrome
 #    - onepassword
 #    - slack
