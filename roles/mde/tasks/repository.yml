@@ -1,6 +1,5 @@
 ---
 
-
 - name: Remove Microsoft Beta slow repository if present
   ansible.builtin.file:
     path: /etc/apt/sources.list.d/insiders-fast.list
