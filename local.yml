@@ -29,8 +29,8 @@
   roles:
     - mde
     - chrome
-    - onepassword
-    - slack
-    - zoom
+#    - onepassword
+#    - slack
+#    - zoom
     - chrome_enrollment
-    - yubikey 
+#    - yubikey 
