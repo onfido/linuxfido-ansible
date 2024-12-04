@@ -10,16 +10,6 @@
     - not uninstall
     - ansible_os_family == "RedHat"
 
-- name: apt-get update
-  apt:
-    cache_valid_time: 86400
-  when:
-    - not uninstall
-    - ansible_os_family == "Debian"
-  tags:
-    - install
-    - dependencies
-
 - name: Install documented dependencies.
   package:
     name:
