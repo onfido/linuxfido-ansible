@@ -28,7 +28,7 @@
     - include: tasks/cron.yml
   roles:
     - mde
-    - intune
+#    - intune
 #    - edge
 #    - chrome
 #    - onepassword
