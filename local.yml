@@ -2,26 +2,26 @@
   connection: local
   become: true
 
-  pre_tasks:
-    - name: update repositories
-      apt:
-        cache_valid_time: 86400
-      changed_when: False
-      when:
-        - not uninstall
-        - ansible_os_family == "Debian"
-      tags:
-        - install
-        - dependencies
-    - name: Validate OS version requirements.
-      assert:
-        that:
-          - ansible_distribution_major_version > "6"
-        fail_msg: "Only RedHat 7 and newer are supported."
-        success_msg: "OS major version supported."
-      when:
-        - not uninstall
-        - ansible_os_family == "RedHat"
+#  pre_tasks:
+#    - name: update repositories
+#      apt:
+#        cache_valid_time: 86400
+#      changed_when: False
+#      when:
+#        - not uninstall
+#        - ansible_os_family == "Debian"
+#      tags:
+#        - install
+#        - dependencies
+#    - name: Validate OS version requirements.
+#      assert:
+#        that:
+#          - ansible_distribution_major_version > "6"
+#        fail_msg: "Only RedHat 7 and newer are supported."
+#        success_msg: "OS major version supported."
+#      when:
+#        - not uninstall
+#        - ansible_os_family == "RedHat"
 
   tasks:
     - include: tasks/users.yml

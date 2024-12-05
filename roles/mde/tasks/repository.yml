@@ -29,14 +29,14 @@
     - debian
     - repo
 
-- name: update apt cache with Defender repo
-  ansible.builtin.apt:
-    update_cache: yes
-    cache_valid_time: 1
-  when: ansible_os_family == "Debian"
-  tags:
-    - debian
-    - repo
+#- name: update apt cache with Defender repo
+#  ansible.builtin.apt:
+##    update_cache: yes
+#    cache_valid_time: 1
+#  when: ansible_os_family == "Debian"
+#  tags:
+#    - debian
+#    - repo
 
 - name: Add Microsoft rpm key.
   rpm_key:
